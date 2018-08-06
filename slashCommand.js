@@ -4,6 +4,8 @@ const pythonProcess = spawn('python', ['./generate.py'])
 
 const slashCommand = (body) => new Promise((resolve, reject) => {
 
+	console.log("launching the process...");
+	
 	pythonProcess.stdout.on("data", data =>{
         resolve(data.toString()); 
     })

@@ -7,5 +7,5 @@ name = 'dr-eyemole'
 python_version = "3.7"
 
 [packages]
-tensorflow = "1.8.0"
+tensorflow = ">=1.8.0"
 textgenrnn = "*"

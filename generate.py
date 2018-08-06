@@ -1,13 +1,12 @@
 
 import sys
+import tensorflow as tf
+from textgenrnn import textgenrnn
+import random
+
 
 print("Eyemole: ")
 sys.stdout.flush()
-
-
-import tensorflow as tf
-#from textgenrnn import textgenrnn
-import random
 
 
 #textgen = textgenrnn()

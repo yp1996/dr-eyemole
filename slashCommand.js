@@ -6,7 +6,8 @@ var python = require('python-shell');
 const slashCommand = (body) => new Promise((resolve, reject) => {
 
 	console.log("launching the process...");
-	python.run("generate.py", function (err, results) { 
+	python.run("./generate.py", function (err, results) { 
+		console.log(err);
 		console.log(results);
 		resolve(results.toString());
 	});

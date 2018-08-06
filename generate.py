@@ -1,3 +1,4 @@
+print("Eyemole: ")
 from textgenrnn import textgenrnn
 import random
 import sys

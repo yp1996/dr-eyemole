@@ -1,3 +1,6 @@
+
+import sys
+
 print("Eyemole: ")
 sys.stdout.flush()
 
@@ -5,7 +8,6 @@ sys.stdout.flush()
 import tensorflow as tf
 from textgenrnn import textgenrnn
 import random
-import sys
 
 
 print("Whymole: ")

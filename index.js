@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const request = require('request');
 const bodyParser = require('body-parser');
 const welcome = require('./welcome');
 const http = require("http");
@@ -54,11 +55,18 @@ app.post('/events', (req, res) => {
 
 app.post('/media', (req, res) => {
 
-  res.sendStatus(200);
+  res.json({
+          response_type: 'ephemeral',
+          text: 'Digging into the collective subconscious, just wait a second...'
+  });
+
+  console.log("start digging");
 
   slashCommand(req.body)
     .then((result) => {
       //return res.json(result)
+
+    console.log("okay we got smth");
 
     let options = {
           method: 'POST',
@@ -67,10 +75,12 @@ app.post('/media', (req, res) => {
           json: true
     };
 
-        
+    console.log(options) 
+
     request(options, err => {
           if (err) console.log(err);
     });
+
     })
     .catch(console.error)
 })

@@ -8,4 +8,4 @@ python_version = "3.7"
 
 [packages]
 tensorflow = ">=1.8.0"
-textgenrnn = "*"
+textgenrnn = ">=1.3.2"

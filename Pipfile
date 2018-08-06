@@ -1,4 +1,6 @@
 [[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
 name = 'dr-eyemole'
 
 [requires]

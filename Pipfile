@@ -7,4 +7,4 @@ name = 'dr-eyemole'
 python_version = "3.7"
 
 [packages]
-textgenrnn = "1.3.2"
+textgenrnn = "*"

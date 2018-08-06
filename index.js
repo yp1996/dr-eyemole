@@ -13,9 +13,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-  res.send('<h2>You have reached Dr Eyemole.</h2> <p>Unfortunately, they are ' +
+  res.send('<h2 font-family=\'Montserrat\'>You have reached Dr Eyemole.</h2> <p font-family=\'Montserrat\>Unfortunately, they are ' +
   'currently on sabbatical so they will not be able to answer your requests right now.' +
-  ' Please <a src=https://www.eyemole.io> leave a message </a>. </p>');
+  ' Please <a src=\'https://www.eyemole.io\'> leave a message </a>. </p>');
 });
 
 /*

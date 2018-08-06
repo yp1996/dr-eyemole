@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const welcome = require('./welcome');
-
+const http = require("http");
 const app = express();
 
 /*
@@ -49,7 +49,12 @@ app.post('/events', (req, res) => {
   }
 });
 
+setInterval(function() {
+    http.get("http://dr-eyemole.herokuapp.com");
+}, 300000);
+
 
 app.listen(process.env.PORT, () => {
   console.log(`App listening on port ${process.env.PORT}!`);
 });
+

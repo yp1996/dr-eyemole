@@ -55,10 +55,22 @@ app.post('/events', (req, res) => {
 app.post('/media', (req, res) => {
 
   res.sendStatus(200);
-  
+
   slashCommand(req.body)
     .then((result) => {
-      return res.json(result)
+      //return res.json(result)
+
+    let options = {
+          method: 'POST',
+          uri: req.body.response_url,
+          body: result,
+          json: true
+    };
+
+        
+    request(options, err => {
+          if (err) console.log(err);
+    });
     })
     .catch(console.error)
 })

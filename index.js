@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const welcome = require('./welcome');
 const http = require("http");
 const slashCommand = require("./slashCommand");
+const spawn = require("child_process").spawn;
+const pythonProcess = spawn("python", ["./generate.py"])
 const app = express();
 
 /*

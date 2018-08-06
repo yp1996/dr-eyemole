@@ -71,7 +71,7 @@ app.post('/media', (req, res) => {
     let options = {
           method: 'POST',
           uri: req.body.response_url,
-          body:{text: result}
+          body:{text: result},
           json: true
     };
 

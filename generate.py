@@ -1,7 +1,15 @@
+print("Eyemole: ")
+sys.stdout.flush()
+
+
 import tensorflow as tf
 from textgenrnn import textgenrnn
 import random
 import sys
+
+
+print("Whymole: ")
+sys.stdout.flush()
 
 textgen = textgenrnn()
 textgen.load("weights.hdf5")

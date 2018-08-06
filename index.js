@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const welcome = require('./welcome');
 const http = require("http");
+const slashCommand = require("./slashCommand");
 const app = express();
 
 /*
@@ -48,6 +49,14 @@ app.post('/events', (req, res) => {
     default: { res.sendStatus(500); }
   }
 });
+
+app.post('/media', (req, res) => {
+  slashCommand(req.body)
+    .then((result) => {
+      return res.json(result)
+    })
+    .catch(console.error)
+})
 
 setInterval(function() {
     http.get("http://dr-eyemole.herokuapp.com");

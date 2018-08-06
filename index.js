@@ -53,6 +53,9 @@ app.post('/events', (req, res) => {
 });
 
 app.post('/media', (req, res) => {
+
+  res.sendStatus(200);
+  
   slashCommand(req.body)
     .then((result) => {
       return res.json(result)

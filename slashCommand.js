@@ -6,4 +6,6 @@ const slashCommand = (body) => new Promise((resolve, reject) => {
 	return resolve({
       text: 'Eyemole: ???'
     });
-}
+});
+
+module.exports = slashCommand;

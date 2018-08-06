@@ -1,7 +1,7 @@
 
 //var python = require('python-shell');
-const spawn = require("child_process").exec;
-const pythonProcess = spawn('python', ['./generate.py']).exec;
+const spawn = require("child_process").spawn;
+const pythonProcess = spawn('python', ['./generate.py']);
 
 const slashCommand = (body) => new Promise((resolve, reject) => {
 

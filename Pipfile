@@ -1,0 +1,8 @@
+[[source]]
+name = 'dr-eyemole'
+
+[requires]
+python_version = "3.7"
+
+[packages]
+textgenrnn = "1.3.2"

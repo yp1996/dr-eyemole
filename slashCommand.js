@@ -8,7 +8,9 @@ var options = {
   pythonOptions: ['-u']
 };
 
-var pyshell = new python('./generate.py',options);
+var pyshell = new python('./generate.py', options, function(err) {
+	console.log("Error" + err);
+});
 
 const slashCommand = (body) => new Promise((resolve, reject) => {
 

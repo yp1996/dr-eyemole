@@ -8,9 +8,6 @@ var options = {
   pythonOptions: ['-u']
 };
 
-var pyshell = new python('./generate.py', options, function(err) {
-	console.log("Error" + err);
-});
 
 const slashCommand = (body) => new Promise((resolve, reject) => {
 
@@ -27,6 +24,9 @@ const slashCommand = (body) => new Promise((resolve, reject) => {
 		resolve(results.toString());
 	});
 	**/
+
+	var pyshell = new python('./generate.py', options, function(err) {
+	console.log("Error" + err);});
 	
 	pyshell.on('message', function (message) { 
 // received a message sent from the Python script (a simple "print" statement)  

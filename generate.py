@@ -1,6 +1,6 @@
 
 import sys
-print("Eyemole: ")
+#print("Eyemole: ")
 from textgenrnn import textgenrnn
 import random
 

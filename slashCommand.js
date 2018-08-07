@@ -12,6 +12,7 @@ const slashCommand = (body) => new Promise((resolve, reject) => {
 
 	console.log("launching the process...");
 	
+	/**
 	python.run("./generate.py", options, function (err, results) { 
 		console.log(err);
 		console.log(err.stack);
@@ -21,7 +22,13 @@ const slashCommand = (body) => new Promise((resolve, reject) => {
 		}
 		resolve(results.toString());
 	});
+	**/
 	
+	python.on('message', function (message) { 
+// received a message sent from the Python script (a simple "print" statement)  
+     console.log(message); 
+     resolve(message);
+ });
 	//console.log(pythonProcess);
 	
 	/*

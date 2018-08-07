@@ -1,6 +1,5 @@
 
 import sys
-import tensorflow as tf
 from textgenrnn import textgenrnn
 import random
 

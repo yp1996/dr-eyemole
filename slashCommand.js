@@ -8,6 +8,8 @@ var options = {
   pythonOptions: ['-u']
 };
 
+var pyshell = new PythonShell('./generate.py',options);
+
 const slashCommand = (body) => new Promise((resolve, reject) => {
 
 	console.log("launching the process...");

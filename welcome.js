@@ -2,7 +2,6 @@ const qs = require('querystring');
 const axios = require('axios');
 const JsonDB = require('node-json-db');
 
-const db = new JsonDB('users', true, false);
 
 const postResult = result => console.log(result.data);
 

@@ -88,6 +88,32 @@ app.post('/media', (req, res) => {
     .catch(console.error)
 })
 
+app.post('/todos', (req, res) => {
+
+  console.log("channel " + req.body.channel_name);
+
+  let options = {
+          method: 'GET',
+          uri: "https://slack.com/api/search.messages",
+          body:{
+            token: process.env.SLACK_TOKEN,
+            query: "TODOS in:#" + req.body.channel_name,
+            sort: "timestamp"}
+  };
+
+
+  request(options, err  => {if (err) console.log(err);}).then(
+    response => {
+
+      console.log(response.body.messages.matches[0].text);
+      
+      res.json({response_type: 'ephemeral',
+        text: response.body.messages.matches[0].text});
+
+  }).catch(console.error)
+
+})
+
 setInterval(function() {
     http.get("http://dr-eyemole.herokuapp.com");
 }, 300000);

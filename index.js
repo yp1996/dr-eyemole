@@ -103,12 +103,12 @@ app.post('/todos', (req, res) => {
   const params = qs.stringify(searchOptions);
   const searchTodos = axios.post('https://slack.com/api/search.messages', params)
   searchTodos.then(
-    response => {
+    result => {
 
-      console.log(response.body.messages.matches[0].text);
+      console.log(result.data.messages.matches[0].text);
 
       res.json({response_type: 'ephemeral',
-        text: response.body.messages.matches[0].text});
+        text: result.data.messages.matches[0].text});
 
   }).catch(console.error)
 

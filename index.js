@@ -92,27 +92,39 @@ app.post('/media', (req, res) => {
 
 app.post('/todos', (req, res) => {
 
-  console.log("channel " + req.body.channel_name);
+  let channelName = req.body.channel_name;
 
-  let searchOptions = {
-      token: process.env.SLACK_TOKEN,
-      query: "TODOS in:#" + req.body.channel_name,
-      sort: "timestamp"
-  };
+  if (channelName != "directmessage") {
 
-  const params = qs.stringify(searchOptions);
-  const searchTodos = axios.post('https://slack.com/api/search.messages', params)
-  searchTodos.then(
-    result => {
+      let searchOptions = {
+          token: process.env.SLACK_TOKEN,
+          query: "TODOS in:#" + req.body.channel_name,
+          sort: "timestamp"
+      };
 
-      console.log(result.data.messages.matches[0].text);
+      const params = qs.stringify(searchOptions);
+      const searchTodos = axios.post('https://slack.com/api/search.messages', params)
+      searchTodos.then(
+        result => {
 
-      res.json({response_type: 'ephemeral',
-        text: result.data.messages.matches[0].text});
+          console.log(JSON.stringify(result.data));
 
-  }).catch(console.error)
+          if (result.data.ok) {
+          console.log(result.data.messages.matches[0].text);
 
-})
+          res.json({response_type: 'ephemeral',
+            text: result.data.messages.matches[0].text});
+        } else {
+          console.log("error")
+        }
+
+      }).catch(console.error)
+
+  } else {
+    res.json({response_type: 'ephemeral',
+            text: "Sorry, you can't look for todos in direct messages. How about you ask the other person?"});
+  }
+});
 
 setInterval(function() {
     http.get("http://dr-eyemole.herokuapp.com");

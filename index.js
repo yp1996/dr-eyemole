@@ -8,6 +8,7 @@ const http = require("http");
 const slashCommand = require("./slashCommand");
 const spawn = require("child_process").spawn;
 const pythonProcess = spawn("python", ["./generate.py"])
+const qs = require('querystring');
 const app = express();
 
 /*
@@ -92,21 +93,19 @@ app.post('/todos', (req, res) => {
 
   console.log("channel " + req.body.channel_name);
 
-  let options = {
-          method: 'GET',
-          uri: "https://slack.com/api/search.messages",
-          body:{
-            token: process.env.SLACK_TOKEN,
-            query: "TODOS in:#" + req.body.channel_name,
-            sort: "timestamp"}
+  let searchOptions = {
+      token: process.env.SLACK_TOKEN,
+      query: "TODOS in:#" + req.body.channel_name,
+      sort: "timestamp"
   };
 
-
-  request(options, err  => {if (err) console.log(err);}).then(
+  const params = qs.stringify(searchOptions);
+  const searchTodos = axios.post('https://slack.com/api/search.messages', params)
+  searchTodos.then(
     response => {
 
       console.log(response.body.messages.matches[0].text);
-      
+
       res.json({response_type: 'ephemeral',
         text: response.body.messages.matches[0].text});
 

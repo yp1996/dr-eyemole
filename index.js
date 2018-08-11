@@ -103,16 +103,12 @@ app.post('/todos', (req, res) => {
       };
 
       const params = qs.stringify(searchOptions);
-      console.log(params);
       const searchTodos = axios.post('https://slack.com/api/conversations.history', params)
       searchTodos.then(
         result => {
-
-          console.log(JSON.stringify(result.data));
-
           if (result.data.ok) {
 
-          let messageText = result.data.messages.map(msg => msg.text).filter(msgText => ("todos" in msgText.ToLowerCase()) || ("action items" in msgText.ToLowerCase()))[0];
+          let messageText = result.data.messages.map(msg => msg.text).filter(msgText => (msgText.toLowerCase().includes("todos")) || (msgText.toLowerCase().includes("action items")))[0];
 
           console.log(messageText)
           res.json({response_type: 'ephemeral',

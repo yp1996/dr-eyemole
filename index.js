@@ -103,6 +103,7 @@ app.post('/todos', (req, res) => {
       };
 
       const params = qs.stringify(searchOptions);
+      console.log(params);
       const searchTodos = axios.post('https://slack.com/api/conversations.history', params)
       searchTodos.then(
         result => {

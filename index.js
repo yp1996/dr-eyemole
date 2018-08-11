@@ -99,11 +99,11 @@ app.post('/todos', (req, res) => {
       let searchOptions = {
           token: process.env.SLACK_TOKEN,
           channel: req.body.channel_id,
-          count: 1000
+          limit: 1000
       };
 
       const params = qs.stringify(searchOptions);
-      const searchTodos = axios.post('https://slack.com/api/channels.history', params)
+      const searchTodos = axios.post('https://slack.com/api/conversations.history', params)
       searchTodos.then(
         result => {
 
@@ -112,7 +112,7 @@ app.post('/todos', (req, res) => {
           if (result.data.ok) {
 
           let messageText = result.data.messages.map(msg => msg.text).filter(msgText => ("todos" in msgText.ToLowerCase()) || ("action items" in msgText.ToLowerCase()))[0];
-          
+
           console.log(messageText)
           res.json({response_type: 'ephemeral',
             text: messageText});

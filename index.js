@@ -135,6 +135,7 @@ app.post('/e', (req, res) => {
   let userId = req.body.user_id;
   let userName = req.body.user_name;
 
+  let data = false;
   try { data = db.getData(`/${userId}`); } catch (error) {
     console.error(error);
   }

@@ -10,6 +10,11 @@ const spawn = require("child_process").spawn;
 const pythonProcess = spawn("python", ["./generate.py"])
 const qs = require('querystring');
 const axios = require('axios');
+const JsonDB = require('node-json-db');
+
+const db = new JsonDB('empowerment', true, false);
+
+
 const app = express();
 
 /*
@@ -123,6 +128,28 @@ app.post('/todos', (req, res) => {
     res.json({response_type: 'ephemeral',
             text: "Sorry, you can't look for todos in direct messages. How about you ask the other person?"});
   }
+});
+
+app.post('/e', (req, res) => {
+
+  let userId = req.body.user_id;
+  let userName = req.body.user_name;
+
+  try { data = db.getData(`/${userId}`); } catch (error) {
+    console.error(error);
+  }
+
+  // `data` will be false if nothing is found or the user hasn't accepted the ToS
+  if (!data) {
+    // add or update the team/user record
+    data = 1;
+    db.push(`/${userId}`, data);
+  } else {
+    db.push(`/${userId}`, data + 1);
+  }
+
+  let msg = "I, Dr Eyemole, hereby empower @" + userName + " . @" + userName + " now has " + data.toString() + " empowerment points."
+  res.json({response_type: "ephemeral", text: msg});
 });
 
 setInterval(function() {

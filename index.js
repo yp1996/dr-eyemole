@@ -150,7 +150,7 @@ app.post('/e', (req, res) => {
   }
 
   let msg = "I, Dr Eyemole, hereby empower @" + userName + " . @" + userName + " now has " + data.toString() + " empowerment points."
-  res.json({response_type: "ephemeral", text: msg});
+  res.json({response_type: "in_channel", text: msg});
 });
 
 setInterval(function() {

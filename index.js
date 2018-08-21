@@ -132,6 +132,9 @@ app.post('/todos', (req, res) => {
 
 app.post('/e', (req, res) => {
 
+  console.log(req.body);
+
+  let userToEmpower = req.body.text;
   let userId = req.body.user_id;
   let userName = req.body.user_name;
 
@@ -140,16 +143,17 @@ app.post('/e', (req, res) => {
     console.error(error);
   }
 
-  // `data` will be false if nothing is found or the user hasn't accepted the ToS
+  // `data` will be false if nothing is found
   if (!data) {
     // add or update the team/user record
     data = 1;
     db.push(`/${userId}`, data);
   } else {
-    db.push(`/${userId}`, data + 1);
+    data += 1;
+    db.push(`/${userId}`, data);
   }
 
-  let msg = "I, Dr Eyemole, hereby empower @" + userName + " . @" + userName + " now has " + data.toString() + " empowerment points."
+  let msg = "I, Dr Eyemole, hereby empower @" + userName + ". @" + userName + " now has " + data.toString() + " empowerment points."
   res.json({response_type: "in_channel", text: msg});
 });
 

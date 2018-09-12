@@ -143,7 +143,9 @@ app.post('/spam', (req, res) => {
      };
 
     const chatPost = axios.post('https://slack.com/api/chat.postEphemeral', params);
-    chatPost();
+    chatPost.then( (result) => {
+      res.sendStatus(200);
+    });
 
    }
 

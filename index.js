@@ -136,7 +136,7 @@ app.post('/spam', (req, res) => {
   channelsToSpam.forEach((channelName) => {
 
     let params = {
-      token: SLACK_TOKEN,
+      token: process.env.SLACK_TOKEN,
       channel: "#" + channelName,
       text: msgText,
       user: req.body.user_id

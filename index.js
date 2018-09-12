@@ -143,7 +143,7 @@ app.post('/spam', (req, res) => {
       user: req.body.user_id
      };
 
-    const chatPost = axios.post('https://slack.com/api/chat.postEphemeral', params);
+    const chatPost = axios.post('https://slack.com/api/chat.postEphemeral', qs.stringify(params));
     requestArray.push(chatPost);
    }
 

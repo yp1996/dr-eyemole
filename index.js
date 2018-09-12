@@ -149,6 +149,8 @@ app.post('/spam', (req, res) => {
 
   );
 
+  console.log(requestArray);
+
   Promise.all(requestArray).then((results) => {});
 
 

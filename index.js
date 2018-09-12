@@ -13,7 +13,7 @@ const axios = require('axios');
 const JsonDB = require('node-json-db');
 
 const db = new JsonDB('empowerment', true, false);
-
+const channelsToSpam = ['ears', 'finance', 'international-ed', 'jerkycircle', 'legal', 'membership', 'podcast', 'poetry', 'sales', 'schedulot', 'space', 'tech', 'upours', 'ustoo', 'website', 'werd'];
 
 const app = express();
 
@@ -128,6 +128,26 @@ app.post('/todos', (req, res) => {
     res.json({response_type: 'ephemeral',
             text: "Sorry, you can't look for todos in direct messages. How about you ask the other person?"});
   }
+});
+
+app.post('/spam', (req, res) => {
+
+  let msgText = req.body.text;
+  channelsToSpam.forEach((channelName) => {
+
+    let params = {
+      token: SLACK_TOKEN,
+      channel: "#" + channelName,
+      text: msgText,
+      user: req.body.user_id
+     };
+
+    const chatPost = axios.post('https://slack.com/api/chat.postEphemeral', params);
+    chatPost();
+
+   }
+
+  );
 });
 
 app.post('/e', (req, res) => {

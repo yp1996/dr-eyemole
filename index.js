@@ -133,6 +133,7 @@ app.post('/todos', (req, res) => {
 app.post('/spam', (req, res) => {
 
   let msgText = req.body.text;
+  let requestArray = [];
   channelsToSpam.forEach((channelName) => {
 
     let params = {
@@ -143,13 +144,14 @@ app.post('/spam', (req, res) => {
      };
 
     const chatPost = axios.post('https://slack.com/api/chat.postEphemeral', params);
-    chatPost.then( (result) => {
-      res.sendStatus(200);
-    });
-
+    requestArray.push(chatPost);
    }
 
   );
+
+  Promise.all(requestArray).then((results) => {res.sendStatus(200);});
+
+
 });
 
 app.post('/e', (req, res) => {

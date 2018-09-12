@@ -149,7 +149,7 @@ app.post('/spam', (req, res) => {
 
   );
 
-  Promise.all(requestArray).then((results) => {res.sendStatus(200);});
+  Promise.all(requestArray).then((results) => {});
 
 
 });

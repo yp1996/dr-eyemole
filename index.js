@@ -151,7 +151,7 @@ app.post('/spam', (req, res) => {
 
   Promise.all(requestArray).then((results) => {
     results.forEach((result) =>
-      {result.sendStatus(200);})
+      {console.log(result.data)})
   });
 
 

@@ -140,10 +140,9 @@ app.post('/spam', (req, res) => {
       token: process.env.SLACK_TOKEN,
       channel: "#" + channelName,
       text: msgText,
-      user: req.body.user_id
      };
 
-    const chatPost = axios.post('https://slack.com/api/chat.postEphemeral', qs.stringify(params));
+    const chatPost = axios.post('https://slack.com/api/chat.postMessage', qs.stringify(params));
     requestArray.push(chatPost);
    }
 

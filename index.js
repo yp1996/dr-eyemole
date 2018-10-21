@@ -13,7 +13,7 @@ const axios = require('axios');
 const JsonDB = require('node-json-db');
 
 const db = new JsonDB('empowerment', true, false);
-const channelsToSpam = ['ears', 'finance', 'international-ed', 'jerkycircle', 'legal', 'membership', 'podcast', 'poetry', 'sales', 'schedulot', 'space', 'tech', 'upours', 'ustoo', 'website', 'werd'];
+const channelsToSpam = ['mods', 'cooperative-housing', 'finance', 'international-ed', 'jerkycircle', 'legal', 'membership', 'podcast', 'poetry', 'sales', 'space', 'tech', 'cooptools', 'ustoo', 'website', 'marketing'];
 
 const app = express();
 
